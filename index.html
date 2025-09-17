@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
   <head>
-    <meta charset="UTF--8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Türkiye piyasaları için anlık finans haberleri sunan hızlı ve sade bir uygulama.">
     <title>Finans Gündemi</title>
@@ -25,6 +25,12 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module">
+      // Prevent crash in browser environments where process.env is not defined.
+      // The execution environment is expected to provide a valid API_KEY.
+      if (typeof window.process === 'undefined') {
+        window.process = { env: { API_KEY: '' } };
+      }
+
       import React, { useState, useEffect } from 'react';
       import ReactDOM from 'react-dom/client';
       import { GoogleGenAI } from "@google/genai";
